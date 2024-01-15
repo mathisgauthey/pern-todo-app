@@ -11,6 +11,19 @@ app.use(express.json());
 
 //create a todo
 
+app.post("/todos", async (req, res) => {
+    try {
+        const { description } = req.body; // extracting the description property from the body object of the req (request) object
+        const newTodo = await pool.query(
+            "INSERT INTO todo (description) VALUES($1) RETURNING *",
+            [description]
+        );
+        res.json(newTodo.rows[0]); //return the first row
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
 //get all todos
 
 //get a todo
