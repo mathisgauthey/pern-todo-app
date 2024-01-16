@@ -11,6 +11,7 @@ const InputTodo = () => {
                     type="text"
                     className="form-control"
                     value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                 />
                 <button className="btn btn-success">Add</button>
             </form>
