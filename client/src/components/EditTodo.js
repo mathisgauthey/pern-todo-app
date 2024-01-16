@@ -4,6 +4,27 @@ const EditTodo = ({ todo }) => {
     // console.log(todo);
     const [description, setDescription] = useState(todo.description);
 
+    // edit description function
+
+    const updateDescription = async (e) => {
+        try {
+            e.preventDefault(); // Don't refresh the page
+            const body = { description };
+            const response = await fetch(
+                `http://localhost:5000/todos/${todo.todo_id}`,
+                {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(body),
+                }
+            );
+            window.location = "/"; // Refresh the page when the response is received
+            // console.log(response);
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+
     return (
         <Fragment>
             <button
@@ -43,6 +64,7 @@ const EditTodo = ({ todo }) => {
                                 type="button"
                                 class="btn btn-warning"
                                 data-dismiss="modal"
+                                onClick={(e) => updateDescription(e)}
                             >
                                 Edit
                             </button>
