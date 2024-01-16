@@ -1,6 +1,9 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 
-const EditTodo = () => {
+const EditTodo = ({ todo }) => {
+    // console.log(todo);
+    const [description, setDescription] = useState(todo.description);
+
     return (
         <Fragment>
             <button
@@ -27,7 +30,11 @@ const EditTodo = () => {
                         </div>
 
                         <div class="modal-body">
-                            <input type="text" className="form-control" />
+                            <input
+                                type="text"
+                                className="form-control"
+                                value={description}
+                            />
                         </div>
 
                         <div class="modal-footer">
