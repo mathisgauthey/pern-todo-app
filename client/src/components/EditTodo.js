@@ -30,6 +30,7 @@ const EditTodo = ({ todo }) => {
                 className="btn btn-warning"
                 data-toggle="modal"
                 data-target={`#id${todo.todo_id}`}
+                onClick={() => setDescription(todo.description)}
             >
                 Edit
             </button>
