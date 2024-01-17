@@ -10,14 +10,11 @@ const EditTodo = ({ todo }) => {
         try {
             e.preventDefault(); // Don't refresh the page
             const body = { description };
-            const response = await fetch(
-                `http://localhost:5000/todos/${todo.todo_id}`,
-                {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(body),
-                }
-            );
+            await fetch(`http://localhost:5000/todos/${todo.todo_id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body),
+            });
             window.location = "/"; // Refresh the page when the response is received
             // console.log(response);
         } catch (error) {
