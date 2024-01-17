@@ -3,9 +3,9 @@ const app = express(); // Take the express librairy and run it
 const cors = require("cors");
 const pool = require("./db"); //req.body
 
-//middleware
-app.use(cors());
-app.use(express.json());
+//Middleware
+app.use(cors()); // It's a mechanism that allows many resources (e.g., fonts, JavaScript, etc.) on a web page to be requested from another domain outside the domain from which the resource originated.
+app.use(express.json()); //Essentially, it allows you to use req.body to access the data in the body of the request.
 
 //ROUTES//
 
