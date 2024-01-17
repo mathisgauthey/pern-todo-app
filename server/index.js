@@ -3,14 +3,13 @@ const app = express(); // Take the express librairy and run it
 const cors = require("cors");
 const pool = require("./db"); //req.body
 
-//middleware
-app.use(cors());
-app.use(express.json());
+//Middleware
+app.use(cors()); // It's a mechanism that allows many resources (e.g., fonts, JavaScript, etc.) on a web page to be requested from another domain outside the domain from which the resource originated.
+app.use(express.json()); //Essentially, it allows you to use req.body to access the data in the body of the request.
 
 //ROUTES//
 
-//create a todo
-
+//Create_a_todo_item
 app.post("/todos", async (req, res) => {
     try {
         // console.log(req.body);
@@ -25,8 +24,7 @@ app.post("/todos", async (req, res) => {
     }
 });
 
-//get all todos
-
+//Get_all_todos
 app.get("/todos", async (req, res) => {
     try {
         const allTodos = await pool.query("SELECT * FROM todo");
@@ -36,8 +34,7 @@ app.get("/todos", async (req, res) => {
     }
 });
 
-//get a todo
-
+//Get_a_todo
 app.get("/todos/:id", async (req, res) => {
     try {
         // console.log(req.params);
@@ -51,13 +48,12 @@ app.get("/todos/:id", async (req, res) => {
     }
 });
 
-//update a todo
-
+//Update_a_todo
 app.put("/todos/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const { description } = req.body;
-        const updateTodo = await pool.query(
+        await pool.query(
             "UPDATE todo SET description = $1 WHERE todo_id = $2",
             [description, id]
         );
@@ -67,15 +63,11 @@ app.put("/todos/:id", async (req, res) => {
     }
 });
 
-//delete a todo
-
+//Delete_a_todo
 app.delete("/todos/:id", async (req, res) => {
     try {
         const { id } = req.params;
-        const deleteTodo = await pool.query(
-            "DELETE FROM todo WHERE todo_id = $1",
-            [id]
-        );
+        await pool.query("DELETE FROM todo WHERE todo_id = $1", [id]);
         res.json("Todo was deleted!");
     } catch (error) {
         console.error(error.message);
