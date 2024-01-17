@@ -9,8 +9,7 @@ app.use(express.json()); //Essentially, it allows you to use req.body to access 
 
 //ROUTES//
 
-//create a todo
-
+//Create_a_todo_item
 app.post("/todos", async (req, res) => {
     try {
         // console.log(req.body);
@@ -25,8 +24,7 @@ app.post("/todos", async (req, res) => {
     }
 });
 
-//get all todos
-
+//Get_all_todos
 app.get("/todos", async (req, res) => {
     try {
         const allTodos = await pool.query("SELECT * FROM todo");
@@ -36,8 +34,7 @@ app.get("/todos", async (req, res) => {
     }
 });
 
-//get a todo
-
+//Get_a_todo
 app.get("/todos/:id", async (req, res) => {
     try {
         // console.log(req.params);
@@ -51,8 +48,7 @@ app.get("/todos/:id", async (req, res) => {
     }
 });
 
-//update a todo
-
+//Update_a_todo
 app.put("/todos/:id", async (req, res) => {
     try {
         const { id } = req.params;
@@ -67,8 +63,7 @@ app.put("/todos/:id", async (req, res) => {
     }
 });
 
-//delete a todo
-
+//Delete_a_todo
 app.delete("/todos/:id", async (req, res) => {
     try {
         const { id } = req.params;
