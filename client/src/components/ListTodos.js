@@ -2,11 +2,12 @@ import React, { Fragment, useEffect, useState } from "react";
 // useEffect make a fetch request to our restful apis each time this component is rendered
 import EditTodo from "./EditTodo";
 
+// ListTodos component
 const ListTodos = () => {
+    // Declare a state variable called todos and set it to an empty array
     const [todos, setTodos] = useState([]);
 
-    // delete todo function
-
+    // deleteTodo function
     const deleteTodo = async (id) => {
         try {
             await fetch(`http://localhost:5000/todos/${id}`, {
@@ -19,6 +20,7 @@ const ListTodos = () => {
         }
     };
 
+    // getTodos function
     const getTodos = async () => {
         try {
             const response = await fetch("http://localhost:5000/todos");
@@ -30,6 +32,7 @@ const ListTodos = () => {
         }
     };
 
+    // run getTodos function when component is rendered, only once thanks to the second argument
     useEffect(() => {
         getTodos();
     }, []);
