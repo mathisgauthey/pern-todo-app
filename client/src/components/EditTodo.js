@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import PropTypes from "prop-types"; // Import PropTypes
 
 const EditTodo = ({ todo }) => {
     // console.log(todo);
@@ -80,6 +81,15 @@ const EditTodo = ({ todo }) => {
             </div>
         </Fragment>
     );
+};
+
+// PropTypes validation
+EditTodo.propTypes = {
+    todo: PropTypes.shape({
+        todo_id: PropTypes.number.isRequired,
+        description: PropTypes.string.isRequired,
+        // Add more prop validations as needed
+    }).isRequired,
 };
 
 export default EditTodo;
